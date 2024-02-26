@@ -15,7 +15,7 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
         public IActionResult Index()
         {
             List<Student> products = StudentDb.GetStudents(context);
-            return View();
+            return View(products);
         }
 
         public IActionResult Create()
@@ -43,7 +43,7 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
             Student p = StudentDb.GetStudent(context, id);
 
             //show it on web page
-            return View();
+            return View(p);
         }
 
         [HttpPost]
@@ -74,6 +74,13 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
             StudentDb.Delete(context, p);
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Details(int id)
+        {
+            Student p = StudentDb.GetStudent(context, id);
+
+            return View(p);
         }
     }
 }
